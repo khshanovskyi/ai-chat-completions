@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "e17b84df-cb1e-45c4-9fcf-66f128ff23f5",
+		"name": "dial-basics",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13054272"
+	},
+	"item": [
+		{
+			"name": "models",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "YOUR_API_KEY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://ai-proxy.lab.epam.com/openai/models",
+					"protocol": "https",
+					"host": [
+						"ai-proxy",
+						"lab",
+						"epam",
+						"com"
+					],
+					"path": [
+						"openai",
+						"models"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "applications",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "YOUR_API_KEY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://ai-proxy.lab.epam.com/openai/applications",
+					"protocol": "https",
+					"host": [
+						"ai-proxy",
+						"lab",
+						"epam",
+						"com"
+					],
+					"path": [
+						"openai",
+						"applications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "gpt/chat/completion Copy",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "YOUR_API_KEY"
+					},
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"stream\": false,\n    \"messages\": [\n        {\n            \"role\": \"user\",\n            \"content\": \"Can I add `strict`: true, when using anthropic models?\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ai-proxy.lab.epam.com/openai/deployments/gpt-4o-2024-08-06/chat/completions",
+					"protocol": "https",
+					"host": [
+						"ai-proxy",
+						"lab",
+						"epam",
+						"com"
+					],
+					"path": [
+						"openai",
+						"deployments",
+						"gpt-4o-2024-08-06",
+						"chat",
+						"completions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
