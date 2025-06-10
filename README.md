@@ -369,7 +369,7 @@ Exiting the chat. Goodbye!
 <details> 
 <summary>❓ Troubleshooting</summary>
 
-- In case if it is hard to follow TODO instructions you can check the solution in the `complited` branch.
+- In case if it is hard to follow TODO instructions you can check the solution in the `completed` branch.
 </details> 
 
 # <img src="dialx-banner.png">
