@@ -24,16 +24,16 @@ class DialClient:
         Send synchronous request to DIAL API and return AI response.
         """
         # TODO:
-        # 1. Create headers dictionary with:
+        #  1. Create headers dictionary with:
         #    - "api-key": self._api_key
         #    - "Content-Type": "application/json"
-        # 2. Create request_data dictionary with:
+        #  2. Create request_data dictionary with:
         #    - "messages": convert messages list to dict format using msg.to_dict() for each message
-        # 3. Make POST request using requests.post() with:
+        #  3. Make POST request using requests.post() with:
         #    - URL: self._endpoint
         #    - headers: headers from step 1
         #    - json: request_data from step 2
-        # 4. Check if response.status_code == 200:
+        #  4. Check if response.status_code == 200:
         #    - If yes: parse JSON response using response.json()
         #    - Get "choices" from response data
         #    - If choices exist and not empty:
@@ -41,7 +41,7 @@ class DialClient:
         #      * Print the content to console
         #      * Return Message(role=Role.AI, content=content)
         #    - If no choices: raise ValueError("No Choice has been present in the response")
-        # 5. If status code != 200:
+        #  5. If status code != 200:
         #    - Raise Exception with format: f"HTTP {response.status_code}: {response.text}"
         pass
 
