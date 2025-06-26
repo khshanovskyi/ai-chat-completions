@@ -1,7 +1,7 @@
 import asyncio
 
 from task.client import DialClient
-from task.constants import DEFAULT_SYSTEM_PROMPT, DIAL_ENDPOINT
+from task.constants import DEFAULT_SYSTEM_PROMPT, DIAL_ENDPOINT, API_KEY
 from task.models.conversation import Conversation
 from task.models.message import Message
 from task.models.role import Role
@@ -12,7 +12,7 @@ async def start(stream: bool) -> None:
     client = DialClient(
         endpoint=DIAL_ENDPOINT,
         deployment_name='gpt-4o',
-        api_key='YOUR_API_KEY',
+        api_key=API_KEY,
     )
 
     # 2. Create conversation
