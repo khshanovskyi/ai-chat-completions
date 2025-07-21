@@ -67,6 +67,12 @@ Implement these methods following the TODO comments:
 - **`stream_completion()`** - Asynchronous streaming request
 - **`_get_content_snippet()`** - Parse streaming data chunks
 
+### 3. Run application:
+- From IDE runner or terminal:
+    ```bash
+    python -m task.app
+    ```
+
 ## 🔍 API Reference
 
 ### DIAL Endpoint
