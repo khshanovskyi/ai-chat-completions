@@ -2,27 +2,19 @@ import json
 import aiohttp
 import requests
 
+from task.clients.base import BaseClient
+from task.constants import DIAL_ENDPOINT
 from task.models.message import Message
 from task.models.role import Role
 
 
-class DialClient:
-    _endpoint: str
-    _api_key: str
+class CustomDialClient(BaseClient):
 
-    def __init__(self, endpoint: str, deployment_name: str, api_key: str):
-        if not api_key or api_key.strip() == "":
-            raise ValueError("API key cannot be null or empty")
-
-        self._endpoint = endpoint.format(
-            model=deployment_name
-        )
-        self._api_key = api_key
+    def __init__(self, deployment_name: str):
+        super().__init__(deployment_name)
+        self._endpoint = DIAL_ENDPOINT + f"/openai/deployments/{deployment_name}/chat/completions"
 
     def get_completion(self, messages: list[Message]) -> Message:
-        """
-        Send synchronous request to DIAL API and return AI response.
-        """
         headers = {
             "api-key": self._api_key,
             "Content-Type": "application/json"
@@ -47,9 +39,6 @@ class DialClient:
             raise Exception(f"HTTP {response.status_code}: {response.text}")
 
     async def stream_completion(self, messages: list[Message]) -> Message:
-        """
-        Send asynchronous streaming request to DIAL API and return AI response.
-        """
         headers = {
             "api-key": self._api_key,
             "Content-Type": "application/json"
@@ -87,45 +76,3 @@ class DialClient:
             delta = choices[0].get("delta", {})
             return delta.get("content", '')
         return ''
-
-# IMPLEMENTATION HINTS:
-#
-# For get_completion():
-# - Use requests.post() for synchronous HTTP requests
-# - Access JSON data with response.json()
-# - Extract nested data safely using .get() method
-# - Print AI response to console before returning
-#
-# For stream_completion():
-# - Use aiohttp.ClientSession() for async HTTP requests
-# - Stream processing: iterate line by line through response
-# - Look for lines starting with "data: "
-# - Handle "[DONE]" marker to end streaming
-# - Print tokens immediately as they arrive (end='')
-# - Join all content snippets at the end
-#
-# For _get_content_snippet():
-# - Parse JSON from streaming data
-# - Navigate: data["choices"][0]["delta"]["content"]
-# - Use .get() method to avoid KeyError
-# - Return empty string if any part is missing
-#
-# Example API Response Structure:
-# Regular completion:
-# {
-#   "choices": [{
-#     "message": {
-#       "role": "assistant",
-#       "content": "Hello! How can I help you?"
-#     }
-#   }]
-# }
-#
-# Streaming chunk:
-# {
-#   "choices": [{
-#     "delta": {
-#       "content": "Hello"
-#     }
-#   }]
-# }

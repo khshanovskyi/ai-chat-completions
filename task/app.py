@@ -1,18 +1,20 @@
 import asyncio
 
-from task.client import DialClient
-from task.constants import DEFAULT_SYSTEM_PROMPT, DIAL_ENDPOINT, API_KEY
+from task.clients.client import DialClient
+from task.constants import DEFAULT_SYSTEM_PROMPT
 from task.models.conversation import Conversation
 from task.models.message import Message
 from task.models.role import Role
 
 
 async def start(stream: bool) -> None:
-    # 1. Create DialClient
+    # 1.1. Create DialClient
     client = DialClient(
-        endpoint=DIAL_ENDPOINT,
         deployment_name='gpt-4o',
-        api_key=API_KEY,
+    )
+    # 1.2. Create DialClient
+    custom_client = DialClient(
+        deployment_name='gpt-4o',
     )
 
     # 2. Create conversation
@@ -47,9 +49,9 @@ async def start(stream: bool) -> None:
         #7. Call LLM
         print("AI:")
         if stream:
-            ai_message = await client.stream_completion(conversation.get_messages())
+            ai_message = await custom_client.stream_completion(conversation.get_messages())
         else:
-            ai_message = client.get_completion(conversation.get_messages())
+            ai_message = custom_client.get_completion(conversation.get_messages())
 
         # Add assistant message to history
         conversation.add_message(ai_message)
