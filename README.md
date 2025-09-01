@@ -56,6 +56,8 @@ By completing this task, you will learn:
 
 ## 📝 Your Tasks
 
+### If the task in the main branch is hard for you, then switch to the with-detailed-description branch
+
 ### 1. Complete `app.py`
 Implement the `start()` function:
 
@@ -293,10 +295,6 @@ data: [DONE]
 </details> 
 
 ## 🧪 Testing
-
-Run the provided tests to verify your implementation:
-- Models are already implemented, but if you do some changes you can verify them in [model_tests](tests/models)
-- Verify implementation via [tests](tests)
 
 ### TEST scenarios:
 <details> 
