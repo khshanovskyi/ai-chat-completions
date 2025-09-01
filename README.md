@@ -43,12 +43,15 @@ By completing this task, you will learn:
    ```
    task/
    ├── models/
-   │   ├── conversation.py    # ✅ Complete
-   │   ├── message.py         # ✅ Complete  
-   │   └── role.py           # ✅ Complete
-   ├── client.py             # 🚧 TODO: Implement methods
-   ├── app.py                # 🚧 TODO: Implement main logic
-   └── constants.py          # ✅ Update API key
+   │   ├── conversation.py   ✅ Complete
+   │   ├── message.py        ✅ Complete  
+   │   └── role.py           ✅ Complete
+   ├── clients/
+   │   ├── base.py           ✅ Complete
+   │   ├── client.py         🚧 TODO: Implement methods
+   │   └── custom_client.py  🚧 TODO: Implement methods
+   ├── app.py                🚧 TODO: Implement main logic
+   └── constants.py          ✅ Update API key
    ```
 
 ## 📝 Your Tasks
@@ -56,7 +59,7 @@ By completing this task, you will learn:
 ### 1. Complete `app.py`
 Implement the `start()` function:
 
-- Create DIAL client instance
+- Create DIAL client instance (it will use the aidial-client lib)
 - Handle user input and conversation flow
 - Choose between streaming and regular completion
 
@@ -65,9 +68,15 @@ Implement these methods following the TODO comments:
 
 - **`get_completion()`** - Synchronous API request
 - **`stream_completion()`** - Asynchronous streaming request
+
+### 3. Complete `custom_client.py`
+Implement these methods following the TODO comments:
+
+- **`get_completion()`** - Synchronous API request
+- **`stream_completion()`** - Asynchronous streaming request
 - **`_get_content_snippet()`** - Parse streaming data chunks
 
-### 3. Run application:
+### 4. Run application:
 - From IDE runner or terminal:
     ```bash
     python -m task.app
